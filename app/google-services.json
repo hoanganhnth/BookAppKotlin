@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "61521778428",
+    "project_id": "book-app-kotlin-706c0",
+    "storage_bucket": "book-app-kotlin-706c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61521778428:android:aaa5bc45adbd902e816979",
+        "android_client_info": {
+          "package_name": "com.example.bookapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61521778428-pq2k4j6g0m1cs0eif4aorndvu7rkqima.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJM5yvGTmE0JIas183pZlg2iJIgi54_jY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61521778428-pq2k4j6g0m1cs0eif4aorndvu7rkqima.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
