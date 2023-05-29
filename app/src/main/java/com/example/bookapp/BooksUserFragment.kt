@@ -94,7 +94,7 @@ class BooksUserFragment : Fragment {
         Log.d(TAG,"loadAllBook: Loading all book")
         pdfArrayList = ArrayList()
         val ref = FirebaseDatabase.getInstance().getReference("Books")
-        ref.addListenerForSingleValueEvent(object :ValueEventListener{
+        ref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 pdfArrayList.clear()
                 for (ds in snapshot.children) {
@@ -117,7 +117,7 @@ class BooksUserFragment : Fragment {
         pdfArrayList = ArrayList()
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.orderByChild(viewsCount).limitToLast(10)
-            .addListenerForSingleValueEvent(object :ValueEventListener{
+            .addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 pdfArrayList.clear()
                 for (ds in snapshot.children) {
@@ -140,7 +140,7 @@ class BooksUserFragment : Fragment {
         pdfArrayList = ArrayList()
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.orderByChild(s).limitToLast(10)
-            .addListenerForSingleValueEvent(object :ValueEventListener{
+            .addValueEventListener(object :ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     pdfArrayList.clear()
                     for (ds in snapshot.children) {
@@ -162,7 +162,7 @@ class BooksUserFragment : Fragment {
         pdfArrayList = ArrayList()
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.orderByChild("categoryId").equalTo(categoryId)
-            .addListenerForSingleValueEvent(object :ValueEventListener{
+            .addValueEventListener(object :ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     pdfArrayList.clear()
                     for (ds in snapshot.children) {

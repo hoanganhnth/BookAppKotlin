@@ -62,7 +62,7 @@ class PdfListAdminActivity : AppCompatActivity() {
 
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.orderByChild("categoryId").equalTo(categoryId)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     pdfArrayList.clear()
                     for (ds in snapshot.children) {

@@ -218,7 +218,14 @@
             android:text="Download"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_save_white"
-
+            />
+        <Button
+            android:id="@+id/favoriteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add favorite"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_favorite_border"
             />
     </LinearLayout>
 
