@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.bookapp.databinding.ActivityPdfDetailBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -22,8 +23,10 @@ import java.io.OutputStream
 
 class PdfDetailActivity : AppCompatActivity() {
 
+    private lateinit var firebaseAuth: FirebaseAuth
+
     private companion object {
-        const val TAG = "BOOK DETAILS_TAG"
+        const val TAG = "BOOK_DETAILS_TAG"
     }
     private lateinit var binding: ActivityPdfDetailBinding
     private lateinit var progressDialog: ProgressDialog
@@ -31,12 +34,13 @@ class PdfDetailActivity : AppCompatActivity() {
     private var bookId = ""
     private var bookUrl = ""
     private var title = ""
+    private var isInMyFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPdfDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        firebaseAuth = FirebaseAuth.getInstance()
         bookId = intent.getStringExtra("bookId").toString()
         progressDialog = ProgressDialog(this)
 
@@ -62,7 +66,86 @@ class PdfDetailActivity : AppCompatActivity() {
                 requestStoragePermissionLaucher.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             }
         }
+        if (firebaseAuth.currentUser != null) {
+            checkIsFavorite()
+            Log.d(TAG, "check is fav")
+        }
+        binding.favoriteBtn.setOnClickListener {
+            if (firebaseAuth.currentUser == null) {
+                Toast.makeText(this, "You're not logged in", Toast.LENGTH_LONG).show()
+            }
+            else {
+                if (isInMyFavorite) {
+                    removeFavorite()
+                }
+                else {
+                    addToFavorite()
+                }
+            }
+        }
     }
+
+    private fun removeFavorite() {
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
+            .removeValue()
+            .addOnSuccessListener {
+                Log.d(TAG,"removeFavorite: Removed from fav")
+                Toast.makeText(this, "Removed from favorite", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {e->
+                Log.d(TAG, "removeFavorite: Failed to remove from fav due to ${e.message}")
+                Toast.makeText(this, "Failed to remove from fav due to ${e.message}",Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun checkIsFavorite() {
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
+            .addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    isInMyFavorite = snapshot.exists()
+                    if (isInMyFavorite) {
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0,R.drawable.ic_favorite,0,0)
+                        binding.favoriteBtn.setText("Remove favorite")
+                    }
+                    else {
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0,R.drawable.ic_favorite_border,0,0)
+                        binding.favoriteBtn.setText("Add favorite")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+    }
+
+    private fun addToFavorite() {
+
+        val timestamp = System.currentTimeMillis()
+        val hashMap:HashMap<String,Any> = HashMap()
+        hashMap["bookId"] = bookId
+        hashMap["timestamp"] = timestamp
+
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseAuth.uid!!).child("Favorites").child(bookId)
+            .setValue(hashMap)
+            .addOnSuccessListener {
+                Log.d(TAG,"removeFavorite: Added fav")
+                Toast.makeText(this, "Added to favorite", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {e->
+                Log.d(TAG, "removeFavorite: Failed to add fav due to ${e.message}")
+                Toast.makeText(this, "Failed to add fav due to ${e.message}",Toast.LENGTH_LONG).show()
+            }
+
+
+
+    }
+
     val requestStoragePermissionLaucher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted:Boolean->
         if (isGranted) {
             Log.d(TAG, "onCreate: STORAGE PERMISSION is granted")
