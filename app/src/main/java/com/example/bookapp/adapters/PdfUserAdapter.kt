@@ -1,12 +1,15 @@
-package com.example.bookapp
+package com.example.bookapp.adapters
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookapp.MyApplication
+import com.example.bookapp.activities.PdfDetailActivity
+import com.example.bookapp.models.PdfModel
+import com.example.bookapp.filters.PdfUserFilter
 import com.example.bookapp.databinding.RowPdfUserBinding
 
 class PdfUserAdapter(var pdfList:ArrayList<PdfModel>): RecyclerView.Adapter<PdfUserAdapter.ViewHolder>() ,Filterable{
@@ -34,9 +37,15 @@ class PdfUserAdapter(var pdfList:ArrayList<PdfModel>): RecyclerView.Adapter<PdfU
         holder.binging.subTitleTv.text = des
         holder.binging.dateTv.text = date
 
-        MyApplication.loadCategory(categoryId,holder.binging.categoryTv)
-        MyApplication.loadPdfFromUrlSinglePage(pdfUrl,title,holder.binging.pdfView, holder.binging.progressBar,null)
-        MyApplication.loadPdfSize(pdfUrl,title,holder.binging.sizeTv)
+        MyApplication.loadCategory(categoryId, holder.binging.categoryTv)
+        MyApplication.loadPdfFromUrlSinglePage(
+            pdfUrl,
+            title,
+            holder.binging.pdfView,
+            holder.binging.progressBar,
+            null
+        )
+        MyApplication.loadPdfSize(pdfUrl, title, holder.binging.sizeTv)
 
         holder.itemView.setOnClickListener {
             val intent = Intent(mcontext, PdfDetailActivity::class.java)

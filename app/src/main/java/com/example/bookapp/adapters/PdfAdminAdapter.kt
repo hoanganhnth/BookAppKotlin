@@ -1,4 +1,4 @@
-package com.example.bookapp
+package com.example.bookapp.adapters
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -7,7 +7,12 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookapp.*
+import com.example.bookapp.activities.PdfDetailActivity
+import com.example.bookapp.activities.PdfEditActivity
 import com.example.bookapp.databinding.RowPdfAdminBinding
+import com.example.bookapp.filters.PdfAdminFilter
+import com.example.bookapp.models.PdfModel
 
 class PdfAdminAdapter(var pdfList:ArrayList<PdfModel>): RecyclerView.Adapter<PdfAdminAdapter.ViewHolder>() ,Filterable{
 
@@ -34,9 +39,15 @@ class PdfAdminAdapter(var pdfList:ArrayList<PdfModel>): RecyclerView.Adapter<Pdf
         holder.binging.subTitleTv.text = des
         holder.binging.dateTv.text = date
 
-        MyApplication.loadCategory(categoryId,holder.binging.categoryTv)
-        MyApplication.loadPdfFromUrlSinglePage(pdfUrl,title,holder.binging.pdfView, holder.binging.progressBar,null)
-        MyApplication.loadPdfSize(pdfUrl,title,holder.binging.sizeTv)
+        MyApplication.loadCategory(categoryId, holder.binging.categoryTv)
+        MyApplication.loadPdfFromUrlSinglePage(
+            pdfUrl,
+            title,
+            holder.binging.pdfView,
+            holder.binging.progressBar,
+            null
+        )
+        MyApplication.loadPdfSize(pdfUrl, title, holder.binging.sizeTv)
 
         holder.binging.moreBtn.setOnClickListener {
             val option = arrayOf("Edit", "Delete")
@@ -44,13 +55,13 @@ class PdfAdminAdapter(var pdfList:ArrayList<PdfModel>): RecyclerView.Adapter<Pdf
             builder.setTitle("Choose option")
                 .setItems(option) {dialog, which->
                     if (which == 0) {
-                        val intent = Intent(mcontext,PdfEditActivity::class.java)
+                        val intent = Intent(mcontext, PdfEditActivity::class.java)
                         intent.putExtra("bookId",pdfId)
                         intent.putExtra("bookUrl", pdfUrl)
                         mcontext.startActivity(intent)
                     }
                     else {
-                        MyApplication.deleteBook(mcontext, pdfUrl,title,pdfId)
+                        MyApplication.deleteBook(mcontext, pdfUrl, title, pdfId)
                     }
 
                 }

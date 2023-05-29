@@ -1,11 +1,10 @@
-package com.example.bookapp
+package com.example.bookapp.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.bookapp.databinding.ActivityMainBinding
-import com.example.bookapp.databinding.ActivitySplashBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.skipBtn.setOnClickListener {
-            startActivity(Intent(this,DashboardUserActivity::class.java))
+            startActivity(Intent(this, DashboardUserActivity::class.java))
         }
     }
 }

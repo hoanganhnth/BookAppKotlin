@@ -1,4 +1,4 @@
-package com.example.bookapp
+package com.example.bookapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bookapp.models.PdfModel
+import com.example.bookapp.adapters.PdfAdminAdapter
 import com.example.bookapp.databinding.ActivityPdfListAdminBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -16,7 +18,7 @@ class PdfListAdminActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPdfListAdminBinding
 
-    private lateinit var pdfAdapter:PdfAdminAdapter
+    private lateinit var pdfAdapter: PdfAdminAdapter
 
     private lateinit var pdfArrayList: ArrayList<PdfModel>
     private var category = ""

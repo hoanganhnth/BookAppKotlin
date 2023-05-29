@@ -1,17 +1,14 @@
-package com.example.bookapp
+package com.example.bookapp.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
-import android.util.Patterns.EMAIL_ADDRESS
 import android.widget.Toast
-import androidx.core.util.PatternsCompat.EMAIL_ADDRESS
 import com.example.bookapp.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
 

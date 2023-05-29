@@ -1,15 +1,17 @@
-package com.example.bookapp
+package com.example.bookapp.adapters
 
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookapp.filters.CategoryFilter
+import com.example.bookapp.models.CategoryModel
+import com.example.bookapp.activities.PdfListAdminActivity
 import com.example.bookapp.databinding.RowCategoryBinding
 import com.google.firebase.database.FirebaseDatabase
 

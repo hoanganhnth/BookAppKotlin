@@ -1,6 +1,8 @@
-package com.example.bookapp
+package com.example.bookapp.filters
 
 import android.widget.Filter
+import com.example.bookapp.models.CategoryModel
+import com.example.bookapp.adapters.CategoryAdapter
 
 class CategoryFilter: Filter {
 

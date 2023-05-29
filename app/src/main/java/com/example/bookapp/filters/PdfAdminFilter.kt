@@ -1,6 +1,8 @@
-package com.example.bookapp
+package com.example.bookapp.filters
 
 import android.widget.Filter
+import com.example.bookapp.models.PdfModel
+import com.example.bookapp.adapters.PdfAdminAdapter
 
 class PdfAdminFilter: Filter {
 

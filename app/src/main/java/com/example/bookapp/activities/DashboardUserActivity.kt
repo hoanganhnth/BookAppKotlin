@@ -1,16 +1,14 @@
-package com.example.bookapp
+package com.example.bookapp.activities
 
 import android.content.Context
-import android.content.Intent
-import android.icu.text.CaseMap.Title
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.example.bookapp.databinding.ActivityDashboardAdminBinding
+import com.example.bookapp.fragments.BooksUserFragment
+import com.example.bookapp.models.CategoryModel
 import com.example.bookapp.databinding.ActivityDashboardUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -63,7 +61,7 @@ class DashboardUserActivity : AppCompatActivity() {
             return fragmentTitleList[position]
         }
 
-        public fun addFragment(fragment: BooksUserFragment,title: String) {
+        public fun addFragment(fragment: BooksUserFragment, title: String) {
             fragmentsList.add(fragment)
             fragmentTitleList.add(title)
         }

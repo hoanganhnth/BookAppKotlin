@@ -1,4 +1,4 @@
-package com.example.bookapp
+package com.example.bookapp.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -11,6 +11,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import com.example.bookapp.Constains
+import com.example.bookapp.MyApplication
+import com.example.bookapp.R
 import com.example.bookapp.databinding.ActivityPdfDetailBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -51,7 +54,7 @@ class PdfDetailActivity : AppCompatActivity() {
         }
 
         binding.readBtn.setOnClickListener {
-            val intent = Intent(this,PdfViewActivity::class.java)
+            val intent = Intent(this, PdfViewActivity::class.java)
             intent.putExtra("bookId",bookId)
             startActivity(intent)
         }
@@ -106,11 +109,13 @@ class PdfDetailActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     isInMyFavorite = snapshot.exists()
                     if (isInMyFavorite) {
-                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0,R.drawable.ic_favorite,0,0)
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0,
+                            R.drawable.ic_favorite,0,0)
                         binding.favoriteBtn.setText("Remove favorite")
                     }
                     else {
-                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0,R.drawable.ic_favorite_border,0,0)
+                        binding.favoriteBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0,
+                            R.drawable.ic_favorite_border,0,0)
                         binding.favoriteBtn.setText("Add favorite")
                     }
                 }
@@ -202,7 +207,8 @@ class PdfDetailActivity : AppCompatActivity() {
 
                     val categoryId = snapshot.child("categoryId").value.toString()
                     bookUrl = snapshot.child("url").value.toString()
-                    val date = MyApplication.formatTimeStamp(snapshot.child("timestamp").value as Long)
+                    val date =
+                        MyApplication.formatTimeStamp(snapshot.child("timestamp").value as Long)
                     val size = ""
                     title = snapshot.child("title").value.toString()
 
@@ -213,9 +219,15 @@ class PdfDetailActivity : AppCompatActivity() {
                     binding.viewsTv.text = snapshot.child("viewsCount").value.toString()
                     binding.downloadsTv.text = snapshot.child("downloadsCount").value.toString()
 
-                    MyApplication.loadCategory(categoryId,binding.categoryTv)
-                    MyApplication.loadPdfFromUrlSinglePage(bookUrl,title,binding.pdfView,binding.progressBar,binding.pagesTv)
-                    MyApplication.loadPdfSize(bookUrl,title,binding.sizeTv)
+                    MyApplication.loadCategory(categoryId, binding.categoryTv)
+                    MyApplication.loadPdfFromUrlSinglePage(
+                        bookUrl,
+                        title,
+                        binding.pdfView,
+                        binding.progressBar,
+                        binding.pagesTv
+                    )
+                    MyApplication.loadPdfSize(bookUrl, title, binding.sizeTv)
 
                 }
 
