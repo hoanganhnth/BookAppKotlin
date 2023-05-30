@@ -3,7 +3,6 @@ package com.example.bookapp.activities
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.icu.util.Output
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -22,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.FileOutputStream
-import java.io.OutputStream
 
 class PdfDetailActivity : AppCompatActivity() {
 

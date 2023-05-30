@@ -3,8 +3,6 @@ package com.example.bookapp
 import android.app.Application
 import android.app.ProgressDialog
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.View
@@ -18,7 +16,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
-import kotlin.collections.HashMap
 
 class MyApplication: Application() {
 

@@ -1,8 +1,10 @@
 package com.example.bookapp.activities
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -39,6 +41,9 @@ class DashboardUserActivity : AppCompatActivity() {
             checkUser()
             finish()
         }
+        binding.profileBtn.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
     }
 
     class ViewPagerAdapter(fm :FragmentManager, behavior: Int, context:Context): FragmentPagerAdapter(fm,behavior){
@@ -61,7 +66,7 @@ class DashboardUserActivity : AppCompatActivity() {
             return fragmentTitleList[position]
         }
 
-        public fun addFragment(fragment: BooksUserFragment, title: String) {
+        fun addFragment(fragment: BooksUserFragment, title: String) {
             fragmentsList.add(fragment)
             fragmentTitleList.add(title)
         }
@@ -129,6 +134,8 @@ class DashboardUserActivity : AppCompatActivity() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {
             binding.subTitleTv.text ="Not logged in"
+            binding.profileBtn.visibility = View.GONE
+            binding.logoutBtn.visibility = View.GONE
         }
         else {
             val email = firebaseUser.email
