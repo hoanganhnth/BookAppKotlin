@@ -86,7 +86,7 @@ class PdfAddActivity : AppCompatActivity() {
     }
 
     private fun uploadStorage() {
-        progressDialog.setMessage("Uploadingc PDF...")
+        progressDialog.setMessage("Uploading PDF...")
         progressDialog.show()
         val timestamp = System.currentTimeMillis()
         val filePathAndName = "Book/$timestamp"

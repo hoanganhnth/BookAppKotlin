@@ -64,11 +64,10 @@ class DashboardAdminActivity : AppCompatActivity() {
         binding.pdfAddBtn.setOnClickListener {
             startActivity(Intent(this, PdfAddActivity::class.java))
         }
+        binding.profileBtn.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
 
-    }
-
-    private fun loadCategories() {
-        TODO("Not yet implemented")
     }
 
     private fun categoryRecyclerView() {
