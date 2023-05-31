@@ -18,7 +18,7 @@ class PdfAdminAdapter(var pdfList:ArrayList<PdfModel>): RecyclerView.Adapter<Pdf
 
     private var filter: PdfAdminFilter?=null
     private lateinit var filterArrayList: ArrayList<PdfModel>
-    class ViewHolder(var binging:RowPdfAdminBinding):RecyclerView.ViewHolder(binging.root)
+    class ViewHolder(var binding:RowPdfAdminBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = RowPdfAdminBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -35,21 +35,21 @@ class PdfAdminAdapter(var pdfList:ArrayList<PdfModel>): RecyclerView.Adapter<Pdf
         val pdfUrl = model.url
         val date = MyApplication.formatTimeStamp(timestamp)
         val mcontext = holder.itemView.context
-        holder.binging.titleTv.text = title
-        holder.binging.subTitleTv.text = des
-        holder.binging.dateTv.text = date
+        holder.binding.titleTv.text = title
+        holder.binding.subTitleTv.text = des
+        holder.binding.dateTv.text = date
 
-        MyApplication.loadCategory(categoryId, holder.binging.categoryTv)
+        MyApplication.loadCategory(categoryId, holder.binding.categoryTv)
         MyApplication.loadPdfFromUrlSinglePage(
             pdfUrl,
             title,
-            holder.binging.pdfView,
-            holder.binging.progressBar,
+            holder.binding.pdfView,
+            holder.binding.progressBar,
             null
         )
-        MyApplication.loadPdfSize(pdfUrl, title, holder.binging.sizeTv)
+        MyApplication.loadPdfSize(pdfUrl, title, holder.binding.sizeTv)
 
-        holder.binging.moreBtn.setOnClickListener {
+        holder.binding.moreBtn.setOnClickListener {
             val option = arrayOf("Edit", "Delete")
             val builder = AlertDialog.Builder(mcontext)
             builder.setTitle("Choose option")

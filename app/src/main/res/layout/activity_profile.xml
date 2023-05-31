@@ -86,6 +86,7 @@
         android:layout_marginTop="3dp"
         android:textColor="@color/black"/>
     <LinearLayout
+        android:id="@+id/infoLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -166,5 +167,35 @@
         </LinearLayout>
 
     </LinearLayout>
+    <View
+        android:id="@+id/separateView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/infoLl"
+        android:background="@color/gray01"
+        android:layout_margin="5dp"
+        />
+
+    <TextView
+        android:id="@+id/favoriteLabelTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separateView"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Favorite Books"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoriteRv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/favoriteLabelTv"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        tools:listitem="@layout/row_pdf_favorite"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </RelativeLayout>
