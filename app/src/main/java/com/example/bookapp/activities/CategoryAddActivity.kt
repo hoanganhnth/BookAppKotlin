@@ -54,7 +54,7 @@ class CategoryAddActivity : AppCompatActivity() {
         val hashMap:HashMap<String, Any> = HashMap()
         hashMap["id"] = "$timestamp"
         hashMap["category"] = category
-        hashMap["timestamp"] = timestamp.toString()
+        hashMap["timestamp"] = timestamp
         hashMap["uid"] = "${firebaseAuth.uid}"
 
         var ref = FirebaseDatabase.getInstance().getReference("Categories")

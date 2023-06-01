@@ -79,9 +79,9 @@ class DashboardUserActivity : AppCompatActivity() {
         ref.addListenerForSingleValueEvent(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 categoryArrayList.clear()
-                val modelAll = CategoryModel("01", "All", "1", "")
-                val modelMostViewed = CategoryModel("01","Most Viewed", "1", "")
-                val modelMostDownloaded = CategoryModel("01","Most Downloaded", "1", "")
+                val modelAll = CategoryModel("01", "All", 1, "")
+                val modelMostViewed = CategoryModel("01","Most Viewed", 1, "")
+                val modelMostDownloaded = CategoryModel("01","Most Downloaded", 1, "")
                 categoryArrayList.add(modelAll)
                 categoryArrayList.add(modelMostViewed)
                 categoryArrayList.add(modelMostDownloaded)

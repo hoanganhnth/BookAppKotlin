@@ -40,6 +40,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbarRl"
         android:padding="10dp"
+        android:layout_marginBottom="70dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,7 +74,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Title"
+                    android:textStyle="bold"
                     android:layout_toEndOf="@id/pdfRl"
+                    android:textColor="@color/black"
                     style="@style/TextAppearance.MaterialComponents.Headline6"/>
 
                 <TableLayout
@@ -193,7 +196,55 @@
                 android:id="@+id/desTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:text="hello ae"/>
+
+            <View
+                android:id="@+id/separateView"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray01"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
+            <RelativeLayout
+                android:id="@+id/actionCommentLl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/commentTitleTv"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Comments"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/addCommentBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/ic_add_comment"
+                    android:background="@android:color/transparent"
+                    />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/actionCommentLl"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_comment" />
         </LinearLayout>
 
     </ScrollView>
@@ -228,5 +279,6 @@
             android:drawableTop="@drawable/ic_favorite_border"
             />
     </LinearLayout>
+
 
 </RelativeLayout>
