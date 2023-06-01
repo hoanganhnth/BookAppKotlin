@@ -39,8 +39,8 @@ class DashboardUserActivity : AppCompatActivity() {
         binding.logoutBtn.setOnClickListener {
             firebaseAuth.signOut()
             checkUser()
-            finish()
         }
+
         binding.profileBtn.setOnClickListener {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
@@ -136,6 +136,8 @@ class DashboardUserActivity : AppCompatActivity() {
             binding.subTitleTv.text ="Not logged in"
             binding.profileBtn.visibility = View.GONE
             binding.logoutBtn.visibility = View.GONE
+            startActivity(Intent(this, SplashActivity::class.java))
+            finish()
         }
         else {
             val email = firebaseUser.email
