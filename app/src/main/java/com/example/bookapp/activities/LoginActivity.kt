@@ -33,8 +33,13 @@ class LoginActivity : AppCompatActivity() {
         binding.noAccountTv.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
         binding.loginBtn1.setOnClickListener {
             validateData()
+        }
+
+        binding.forgotTv.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
     }
     private var email = ""
@@ -60,9 +65,11 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
+                progressDialog.dismiss()
                 checkUser()
             }
             .addOnFailureListener { e->
+                progressDialog.dismiss()
                 Toast.makeText(this, "Login failed due to ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
