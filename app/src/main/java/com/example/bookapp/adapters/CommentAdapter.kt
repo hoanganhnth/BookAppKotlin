@@ -32,11 +32,24 @@ class CommentAdapter(var commentList: ArrayList<CommentModel>): RecyclerView.Ada
         val bookId = commentList[position].bookId
         val mcontext = holder.itemView.context
 
+        var userType = "";
         val firebaseAuth = FirebaseAuth.getInstance()
         holder.binding.commentTv.text = comment
         holder.binding.dateTv.text = MyApplication.formatTimeStamp(timestamp)
 
         //load info user
+
+        val ref1 = FirebaseDatabase.getInstance().getReference("Users")
+        ref1.child(firebaseAuth.uid.toString())
+            .addValueEventListener(object: ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    userType = snapshot.child("userType").value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid)
             .addListenerForSingleValueEvent(object : ValueEventListener{
@@ -63,7 +76,7 @@ class CommentAdapter(var commentList: ArrayList<CommentModel>): RecyclerView.Ada
 
         //delete comment
         holder.itemView.setOnClickListener {
-            if (firebaseAuth.currentUser != null && firebaseAuth.uid == uid) {
+            if (firebaseAuth.currentUser != null && (firebaseAuth.uid == uid || userType.equals("admin"))) {
                 val builder = AlertDialog.Builder(mcontext)
                 builder.setCancelable(false)
                 builder.setTitle("Delete Commit")
